@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context docBase="" path="/" reloadable="true">
+	<Resource name="jdbc/ubDS"
+			auth="Container"
+			type="oracle.jdbc.pool.OracleDataSource"
+			driverClassName="oracle.jdbc.driver.OracleDriver"
+			factory="oracle.jdbc.pool.OracleDataSourceFactory"
+			url="jdbc:oracle:thin:@210.16.195.112:1521:GLOBAL"
+			user="KMI"
+			password="VKZMELWKDLS"
+			maxActive="20"
+			maxIdle="10"
+			maxWait="-1"/>
+</Context>

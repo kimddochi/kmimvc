@@ -1,0 +1,74 @@
+@charset "utf-8";
+
+body {margin:0;padding:0;background-color:#fff;text-align:left}
+hr,legend {display:none}
+img,fieldset {border:0 none}
+dl,ul,ol,li {list-style:none}
+h1,h2,h3,h4,h5,dl,dt,dd,ul,li,ol,th,td,p,blockquote,form,fieldset,legend {margin:0;padding:0}
+table {border-collapse:collapse}
+a {text-decoration:none;overflow:hidden;color:#666}
+a:link:hover, a:active {text-decoration:underline}
+input,select,textarea {font-size:100%}
+body,th,td {font-size:12px;font-family:"돋움",dodum,sans-serif;color:#666}
+caption {display:none}
+
+img, input {vertical-align:middle}
+input {border:1px solid #CCC;padding:5px 1px 2px 5px;font-size:12px;color:#808080}
+input.radioType {margin:-2px 3px 0 5px;border:none}
+input.type_button {padding:2px;font-weight:bold;border:1px solid #CCC}
+input[type="checkbox"] {border:0}
+textarea {border:1px solid #CCC;color:#666}
+select {vertical-align:middle;border:1px solid #CCC;font-size:12px;color:#666;height:18px}
+
+.login {position:relative;display:block;width:992px;height:585px;background:url(../images/admin/login_bg.jpg) no-repeat;}
+.login form {padding:274px 0 0 375px}
+.id_txt {position:absolute;width:145px;height:12px;top:270px;left:410px}
+.pw_txt {position:absolute;width:145px;height:12px;top:300px;left:410px}
+.login_btn {position:absolute;width:85px;height:50px;padding:0;top:270px;left:580px;padding:2px;font-weight:bold;border:1px solid #CCC}
+
+#headerWrap {position:relative;display:block;width:992px;height:106px;}
+/*#headerWrap h1 {display:none}*/
+#footerWrap {position:relative;clear:both;width:992px;height:81px;margin-top:60px;background:url(../images/admin/buttom_img.gif) no-repeat;}
+#leftWrap {float:left;width:150px;font-size:12px;margin:0 30px}
+#leftWrap ul {list-style:square}
+#leftWrap ul .depth1 {width:150px; margin-bottom:5px;padding:5px 0 0 0;font-weight:bold;list-style:square}
+#leftWrap ul .depth1 ul {padding:5px 0 0 14px;list-style:circle}
+#leftWrap ul .depth1 ul li {font-weight:normal;list-style:circle}
+
+#leftWrap ul .depth2:hover {background: url(../images/admin/left/btn_02_over.gif) no-repeat left center; padding-left: 30px; }
+#leftWrap ul .depth2.choice {background: url(../images/admin/left/btn_02_over.gif) no-repeat left center; padding-left: 30px; }
+#leftWrap ul .depth3 {display:block;width:160px;height:17px;margin-bottom:3px;background: url(../images/admin/left/btn_03.gif) no-repeat left center; padding:3px 0 0 49px;}
+#leftWrap ul a {text-decoration:none; }
+#rightWrap {float:left;width:710px}
+.title {display:block;width:710px;height:18px;border-bottom:1px solid #efefef}
+.title h1 {float:left;padding-left:10px;background:url(../images/admin/title_img.jpg) left center no-repeat;font-size:14px;color:#4c4c4c}
+.title p {float:right;color:#727272}
+
+.list_table {width:100%;margin:10px 0;border-right:1px solid #ddd;border-bottom:1px solid #ddd;text-align:center}
+.list_table th {padding:5px 0;background-color:#e9e9e9;border-top:1px solid #ddd;border-left:1px solid #ddd;color:#727272}
+.list_table td {padding:3px 0;border-top:1px solid #ddd;border-left:1px solid #ddd;color:#898989}
+.list_table td a {color:#898989}
+.list_table input {width:25px;margin-right:5px}
+.list_table .type_button {width:auto;height:auto;border:1px solid #ccc}
+
+.btn_wrap {display:block;text-align:right}
+
+.pagingNav {display:block;margin:10px 0;text-align:center}
+.pagingNav a {color:#8d8d8d;height:13px;margin:0 3px}
+.pagingNav .cur_num {font-weight:bold;color:#ffb910}
+
+.search_wrap {display:inline-block;width:670px;padding:20px;margin:20px 0;background:#f0f0f0}
+.search_wrap dl {width:600px}
+.search_wrap dl dt {float:left;width:100px;padding-top:4px;margin-bottom:5px;font-weight:bold}
+.search_wrap dl dd {float:left;width:500px;margin-bottom:5px}
+.search_wrap select {width:75px;height:22px}
+.search_wrap input {width:155px;height:12px;border:1px solid #adadb1}
+.search_wrap .type_button {width:auto;height:auto;border:1px solid #ccc}
+
+.sub_title {margin:30px 0;padding-left:20px;background:url(../images/admin/point_02.gif) 10px center no-repeat;font-weight:bold;color:858585}
+.write_table {width:100%;text-align:left;border-bottom:1px solid #efefef;margin:20px 0 10px 0}
+.write_table th {text-align:left;padding:6px 0 0 20px;vertical-align:top;background:url(../images/admin/02_text.gif) 10px 8px no-repeat;color:#848484;font-weight:normal}
+.write_table td {padding:5px 0;color:#3b3b3b}
+.write_table td .input_txt {width:400px}
+.write_table td textarea {width:405px}
+.write_table td a {margin-left:5px}

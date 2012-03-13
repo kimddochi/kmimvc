@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd"> 
+
+<mapper namespace="reser">
+
+	<resultMap id="reserMap" type="kr.or.kmimvc.dto.Reser">
+		<result column="YEAR"						property="year"/>
+		<result column="NUM_SEQ"				property="numSeq"/>
+		<result column="IDX"						property="idx"/>
+		<result column="COD_JISA"				property="codJisa"/>
+		<result column="DAT_YEYAK"			property="datYeak"/>
+		<result property="descName"			column="DESC_NAME"/>
+		<result column="COD_DC"					property="codDc"/>
+		<result column="DESC_DEPT"			property="descDept"/>
+		<result column="YSNO_FOLK"			property="ysnoFolk"/>
+		<result column="GUBN_STATUS"		property="gubnStatus"/>
+		<result column="GUBN_RESER"			property="gubnReser"/>
+		<result column="DESC_HANGMOK"		property="descHangmok"/>
+		<result column="GUBN_PYSEQ"			property="gubnPyseq"/>
+		<result column="GUBN_PYYH"			property="gubnPyyh"/>
+		<result column="SEL_CNT"				property="selCnt"/>
+		<result column="SEL_HM"					property="selHm"/>
+		<result column="ADD_HM"					property="addHm"/>
+		<result column="CUST_GITA"			property="custGita"/>
+		<result column="NUM_TEL"				property="numTel"/>
+		<result column="DESC_EMAIL"			property="descEmail"/>
+		<result column="NUM_JUMIN"			property="confidenceNum"/>
+	</resultMap>
+	
+	<insert id="save" parameterType="kr.or.kmimvc.dto.Reser">
+		INSERT INTO RESER_2012(YEAR,          NUM_SEQ,      IDX,         COD_JISA,      DAT_YEYAK,        DESC_NAME,
+                           COD_DC,        DESC_DEPT,    YSNO_FOLK,   GUBN_STATUS,   GUBN_RESER,       DESC_HANGMOK,
+                           GUBN_PYSEQ,    GUBN_PYYH,    SEL_CNT,     SEL_HM,        ADD_HM,           CUST_GITA,
+                           NUM_TEL,       DESC_EMAIL,   DAT_INSERT,  COD_INSERT,    NUM_JUMIN)                                                                          
+    VALUES (               #{year},       9999,         #{idx},      #{codJisa},    #{datYeyak},      #{descName},
+                           #{codDc},      #{descDept},  #{ysnoFolk}, #{gubnStatus}, #{gubnReser},     #{descHangmok},
+                           #{gubnPyseq},  #{gubnPyyh},  #{selCnt},   #{selHm},      #{add_hm},        #{custGita},
+                           #{numTel},     #{descEmail}, SYSDATE,     '',            #{confidenceNum})
+	</insert>
+	
+	<select id="getReservationConfirmation" parameterType="string" resultMap="reserMap">
+		SELECT YEAR,
+           NUM_SEQ,
+           IDX,
+           COD_JISA,
+           DAT_YEYAK,
+           DESC_NAME,
+           COD_DC,
+           DESC_DEPT,
+           YSNO_FOLK,
+           GUBN_STATUS,
+           GUBN_RESER,
+           DESC_HANGMOK,
+           GUBN_PYSEQ,
+           GUBN_PYYH,
+           SEL_CNT,
+           SEL_HM,
+           ADD_HM,
+           CUST_GITA,
+           NUM_TEL,
+           DESC_EMAIL,
+           DAT_INSERT,
+           COD_INSERT,
+           NUM_JUMIN
+      FROM RESER_2012
+     WHERE 1=1
+       AND NUM_JUMIN = #{confidenceNum}
+	</select>
+</mapper>
+	

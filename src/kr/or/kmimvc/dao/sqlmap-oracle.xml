@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD SQL Map Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+    
+<configuration>
+
+	<mappers>
+		<!-- 예약관련 DTO 선언 -->
+		<mapper resource="kr/or/kmimvc/dao/impl/reserve/sqlmap/pumyi.xml"/>
+		<mapper resource="kr/or/kmimvc/dao/impl/reserve/sqlmap/pumyigs.xml"/>
+		<mapper resource="kr/or/kmimvc/dao/impl/reserve/sqlmap/pumyigs_sel.xml"/>
+		<mapper resource="kr/or/kmimvc/dao/impl/reserve/sqlmap/hangmok.xml"/>
+		<mapper resource="kr/or/kmimvc/dao/impl/reserve/sqlmap/reser_capa.xml"/>
+		<mapper resource="kr/or/kmimvc/dao/impl/reserve/sqlmap/reser.xml"/>
+	</mappers>
+
+</configuration>

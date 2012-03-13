@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd"> 
+
+<mapper namespace="hangmok">
+
+	<resultMap id="hangmokMap" type="kr.or.kmimvc.dto.Hangmok">
+		<result property="codHm"		column="COD_HM"/>
+		<result property="descKor"	column="DESC_KOR"/>
+		<result property="descEng"	column="DESC_ENG"/>
+	</resultMap>
+
+	<select id="getHanmokByCodDcCollection" parameterType="kr.or.kmimvc.dto.Hangmok" resultMap="hangmokMap">
+		SELECT COD_HM,
+		       DESC_KOR,
+		       DESC_ENG
+		  FROM HANGMOK
+		 WHERE 1=1
+			 AND COD_HM IN
+			 	<foreach collection="array" item="codHm" open="(" separator="," close=")">
+          #{codHm}
+			 	</foreach>
+		   AND ROWNUM BETWEEN 1 AND 10
+	</select>
+	
+</mapper>	

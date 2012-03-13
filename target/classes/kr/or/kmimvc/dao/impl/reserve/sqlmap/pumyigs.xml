@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd"> 
+
+<mapper namespace="pumyigs">
+
+	<resultMap id="pumyigsMap" type="kr.or.kmimvc.dto.Pumyigs">
+		<result property="numSeq"			column="NUM_SEQ"/>
+		<result property="codGmgn"		column="COD_GMGN"/>
+		<result property="codDc"			column="COD_DC"/>
+		<result property="gubnGmsa"		column="GUBN_GMSA"/>
+		<result property="descGmgn"		column="DESC_GMGN"/>
+		<result property="codJangbi"	column="COD_JANGBI"/>
+		<result property="floor11"		column="Floor_11"/>
+		<result property="floor12"		column="Floor_12"/>
+		<result property="floor15"		column="FLOOR_15"/>
+		<result property="floor43"		column="Floor_43"/>
+		<result property="floor51"		column="Floor_51"/>
+		<result property="floor61"		column="Floor_61"/>
+		<result property="floor71"		column="Floor_71"/>
+	</resultMap>
+
+	<select id="getPumyigsByCodDcNumSeq" parameterType="kr.or.kmimvc.dto.Pumyigs" resultMap="pumyigsMap">
+		SELECT NUM_SEQ,
+		       COD_GMGN,
+		       COD_DC,
+		       GUBN_GMSA,
+		       DESC_GMGN
+		  FROM PUMYIGS 
+		 WHERE 1=1
+	 	<if test="numSeq != null and codDc != null">
+	  	AND NUM_SEQ = #{numSeq}
+	  	AND COD_DC = #{codDc}
+	 	</if>
+	 	<if test="gubnMan != null">
+	  	AND GUBN_MAN = #{gubnMan}
+	 	</if>
+	   AND ROWNUM BETWEEN 1 AND 10
+	</select>
+
+	<select id="getPossibleJisa" parameterType="kr.or.kmimvc.dto.Pumyigs" resultMap="pumyigsMap">
+		SELECT NUM_SEQ,
+		       COD_GMGN,
+		       COD_DC,
+		       GUBN_GMSA,
+		       DESC_GMGN,
+		       COD_JANGBI,
+		       FLOOR_15,
+		       FLOOR_12,
+		       FLOOR_11,
+		       FLOOR_43,
+		       FLOOR_61,
+		       FLOOR_71,
+		       FLOOR_51
+		FROM PUMYIGS
+	 WHERE 1=1
+	 	<if test="numSeq != null and codDc != null and codGmgn != null">
+	  	AND NUM_SEQ = #{numSeq}
+	  	AND COD_DC = #{codDc}
+	  	AND COD_GMGN = #{codGmgn}
+	 	</if>
+	   AND ROWNUM BETWEEN 1 AND 1
+	</select>
+
+	<select id="getPumyigsOneItem" parameterType="kr.or.kmimvc.dto.Pumyigs" resultMap="pumyigsMap">
+		SELECT NUM_SEQ,
+		       COD_GMGN,
+		       COD_DC,
+		       GUBN_GMSA,
+		       DESC_GMGN,
+		       COD_JANGBI,
+		       FLOOR_15,
+		       FLOOR_12,
+		       FLOOR_11,
+		       FLOOR_43,
+		       FLOOR_61,
+		       FLOOR_71,
+		       FLOOR_51
+		FROM PUMYIGS
+	 WHERE 1=1
+	   <if test="numSeq != null and codDc != null and codGmgn != null">
+	   AND NUM_SEQ = #{numSeq}
+	   AND COD_DC = #{codDc}
+	   AND COD_GMGN = #{codGmgn}
+	   </if>
+	   AND ROWNUM BETWEEN 1 AND 10
+	</select>
+	
+	<insert id="save">
+		INSERT INTO RESERVE(NUM_SEQ, COD_DC, DESC_NAME)
+		VALUES (123, '123123', 'TEST')
+	</insert>
+</mapper>
+	

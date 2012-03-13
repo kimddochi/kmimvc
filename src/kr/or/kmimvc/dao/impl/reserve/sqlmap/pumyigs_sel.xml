@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd"> 
+
+<mapper namespace="pumyigs_sel">
+
+	<resultMap id="pumyigsSelMap" type="kr.or.kmimvc.dto.PumyigsSel">
+		<result property="numSeq"		column="NUM_SEQ"/>
+		<result property="codGmgn"	column="COD_GMGN"/>
+		<result property="codDc"		column="COD_DC"/>
+		<result property="selNo"		column="SEL_NO"/>
+		<result property="codHm"		column="COD_HM"/>
+	</resultMap>
+
+	<select id="getSelectionOption" parameterType="kr.or.kmimvc.dto.PumyigsSel" resultMap="pumyigsSelMap">
+		SELECT NUM_SEQ,
+		       COD_DC,
+		       COD_GMGN,
+		       SEL_NO,
+		       COD_HM
+		  FROM PUMYIGS_SEL
+		 WHERE 1=1
+			 <if test="numSeq!=null and codDc!=null and codGmgn!=null">
+		   AND NUM_SEQ = #{numSeq}
+		   AND COD_DC = #{codDc}
+		   AND COD_GMGN =#{codGmgn}
+		   </if>
+	</select>
+	
+</mapper>
+	

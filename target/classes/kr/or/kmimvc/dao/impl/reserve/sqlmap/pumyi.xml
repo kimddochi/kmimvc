@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd"> 
+
+<mapper namespace="pumyi">
+
+	<resultMap id="pumyiMap" type="kr.or.kmimvc.dto.Pumyi">
+		<result column="COD_DC"					property="codDc"/>
+		<result column="NUM_SEQ"				property="numSeq"/>
+		<result column="COD_JUJISA"			property="codJujisa"/>
+		<result column="DAT_START"			property="datStart"/>
+		<result column="DAT_END"				property="datEnd"/>
+	</resultMap>
+	
+	<select id="getPumyiByCodDcAndDate" parameterType="map" resultMap="pumyiMap">
+		SELECT COD_DC,
+           NUM_SEQ,
+           COD_JUJISA,
+           DAT_START,
+           DAT_END
+      FROM PUMYI
+     WHERE 1=1
+       AND COD_DC = #{codDc}
+       AND #{date} BETWEEN DAT_START AND DAT_END
+	</select>
+</mapper>
+	

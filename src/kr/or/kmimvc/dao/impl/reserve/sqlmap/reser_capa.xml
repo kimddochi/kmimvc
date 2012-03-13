@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd"> 
+
+<mapper namespace="reser_capa">
+
+	<resultMap id="reserCapaMap" type="kr.or.kmimvc.dto.ReserCapa">
+		<result property="codJisa"			column="COD_JISA"/>
+		<result property="datYeyak"			column="DAT_YEYAK"/>
+		<result property="gubnApm"			column="GUBN_APM"/>
+		<result property="gubnTime"			column="GUBN_TIME"/>
+		<result property="gubnGmsa"			column="GUBN_GMSA"/>
+		<result property="gubnFloor"		column="GUBN_FLOOR"/>
+		<result property="gubnWeek"			column="GUBN_WEEK"/>
+		<result property="numCapa"			column="NUM_CAPA"/>
+		<result property="ysnoMagam"		column="YSNO_MAGAM"/>
+	</resultMap>
+
+	<select id="getReserveDate" parameterType="kr.or.kmimvc.dto.ReserCapa" resultMap="reserCapaMap">
+		SELECT COD_JISA,
+		       DAT_YEYAK,
+		       GUBN_APM,
+		       GUBN_TIME,
+		       GUBN_GMSA,
+		       GUBN_WEEK,
+		       GUBN_FLOOR,
+		       NUM_CAPA,
+		       YSNO_MAGAM
+		  FROM RESER_CAPA
+		 WHERE COD_JISA = #{codJisa}
+		   AND RTRIM(DAT_YEYAK) = #{datYeyak}
+	</select>
+
+</mapper>
+	
