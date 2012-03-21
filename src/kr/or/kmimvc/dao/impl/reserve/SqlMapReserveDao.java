@@ -28,12 +28,20 @@ public class SqlMapReserveDao extends SqlSessionDaoSupport implements ReserveDao
 		return (Pumyigs)getSqlSession().selectOne("pumyigs.getPossibleJisa", pumyigs);
 	}
 
-	public List<?> findSelectionOption(Pumyigs pumyigs) {
-		return getSqlSession().selectList("pumyigs_sel.getSelectionOption", pumyigs);
+	public List<?> findSelectionGmsa(Pumyigs pumyigs) {
+		return getSqlSession().selectList("pumyigs_sel.getSelectionGmsa", pumyigs);
 	}
 
 	public List<?> findHangmokByCodDc(String[] codHm) {
 		return getSqlSession().selectList("hangmok.getHanmokByCodDcCollection", codHm);
+	}
+
+	public List<?> findAdditionGmsa(Pumyigs pumyigs) {
+		return getSqlSession().selectList("pumyi_suga.getAdditionGmsa", pumyigs);
+	}
+
+	public List<?> findReserveDate(ReserCapa reserCapa) {
+		return getSqlSession().selectList("reser_capa.getReserveDate", reserCapa);
 	}
 
 //	public List<?> findPumyigsGmsnItems(Pumyigs pumyigs) {
@@ -46,10 +54,6 @@ public class SqlMapReserveDao extends SqlSessionDaoSupport implements ReserveDao
 //
 //	public PumyigsSel findOption(Pumyigs pumyigs) {
 //		return (PumyigsSel)getSqlSession().selectOne("pumyigs_sel.getOption", pumyigs);
-//	}
-//
-//	public List<?> findReserveDate(ReserCapa reserCapa) {
-//		return getSqlSession().selectList("reser_capa.getReserveDate", reserCapa);
 //	}
 //
 //	public void save(Reser reser) {

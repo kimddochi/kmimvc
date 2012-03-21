@@ -21,7 +21,8 @@ public class Reser {
 	String gubnPyyh = "";			//검사유형코드(PUMYIGS.COD_GMGN)
 	String selCnt = "";				//선택항목갯수
 	String selHm = "";				//선택항목
-	String add_hm = "";				//추가항목
+	String addHm = "";				//추가항목
+	String addPr = "";				//추가항목
 	String custGita = "";			//고객기타사항
 	String numTel = "";				//휴대폰
 	String descEmail = "";			//이메일
@@ -172,12 +173,12 @@ public class Reser {
 		this.selHm = selHm;
 	}
 
-	public String getAdd_hm() {
-		return add_hm;
+	public String getAddHm() {
+		return addHm;
 	}
 
-	public void setAdd_hm(String add_hm) {
-		this.add_hm = add_hm;
+	public void setAddHm(String addHm) {
+		this.addHm = addHm;
 	}
 
 	public String getCustGita() {

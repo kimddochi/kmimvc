@@ -17,18 +17,19 @@ public interface ReserveDao {
 
 	public Pumyigs findPossibleJisa(Pumyigs pumyigs);
 
-	public List<?> findSelectionOption(Pumyigs pumyigs);
+	public List<?> findSelectionGmsa(Pumyigs pumyigs);
 	
 	public List<?> findHangmokByCodDc(String[] codHm);
+
+	public List<?> findAdditionGmsa(Pumyigs pumyigs);
+
+	public List<?> findReserveDate(ReserCapa reserCapa);
 	
 //	public List<?> findPumyigsGmsnItems(Pumyigs pumyigs);
 //
 //	public Pumyigs findPumyigsOneItem(Pumyigs pumyigs);
 //
 //	public PumyigsSel findOption(Pumyigs pumyigs);
-//
-//
-//	public List<?> findReserveDate(ReserCapa reserCapa);
 //
 //	public void save(Reser reser);
 //

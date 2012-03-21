@@ -1,10 +1,10 @@
 package kr.or.kmimvc.service.face.reserve;
 
 import java.util.List;
-import java.util.Map;
 
 import kr.or.kmimvc.dto.Pumyi;
 import kr.or.kmimvc.dto.Pumyigs;
+import kr.or.kmimvc.dto.ReserCapa;
 
 public interface ReserveService {
 
@@ -14,7 +14,11 @@ public interface ReserveService {
 
 	public Pumyigs findPossibleJisa(Pumyigs pumyigs);
 
-	public Object findSelectionOption(Pumyigs pumyigs);
+	public List<?> findSelectionGmsa(Pumyigs pumyigs);
+
+	public List<?> findAdditionGmsa(Pumyigs pumyigs);
+
+	public List<?> findReserveDate(ReserCapa reserCapa);
 
 //	public List<?> findPumyigsGmsnItems(Pumyigs pumyigs);
 //
@@ -23,8 +27,6 @@ public interface ReserveService {
 //	public Pumyigs findPumyigsOneItem(Pumyigs pumyigs);
 //
 //	public List<?> findOption(Pumyigs pumyigs);
-//
-//	public List<?> findReserveDate(ReserCapa reserCapa);
 //	
 //	public void save(Reser reser);
 //

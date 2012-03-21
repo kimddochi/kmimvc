@@ -16,28 +16,14 @@ $(document).ready(function(){
 			url: './jsonPossibleJisa.web',
 			data: {numSeq:$('#numSeq').val(), codDc:$('#codDc').val(), codGmgn:$(this).val()},
 			dataType: "json",
-			beforSend: function(){
-				//$('#wrap').block({message: '<img src="/contents/images/common/ajax-loader.gif"/>', css: {border: 'none'}, overlayCSS: {backgroundColor: '#FFFFFF'}});
-				$('#wrap').block({message: '<img src="/contents/images/common/ajax-loader.gif"/>', css: {border: 'none'}});
+			beforeSend: function(){
+				$('#wrap').block({message: '<img src="/contents/images/common/ajax-loader.gif"/>', css: {border: 'none', backgroundColor: '#666666'}});
 			},
 			complete: function(){
-				$('#warp').unblock();
+				$('#wrap').unblock();
 			},
 			error: function(x, e){
-	      if(x.status==0){
-	    	  alert('You are offline!!\n Please Check Your Network.');
-	      }else if(x.status==404){
-	        alert('Requested URL not found.');
-	      }else if(x.status==500){
-	        alert('Internel Server Error.');
-	      }else if(e=='parsererror'){
-	        alert('Error.\nParsing JSON Request failed.');
-	        alert(x.responseText);
-	      }else if(e=='timeout'){
-	        alert('Request Time out.');
-	      }else {
-	        alert('Unknow Error.\n'+x.responseText);
-	      }
+	      if(x.status==0){alert('You are offline!!\n Please Check Your Network.');}else if(x.status==404){alert('Requested URL not found.');}else if(x.status==500){alert('Internel Server Error.');}else if(e=='parsererror'){alert('Error.\nParsing JSON Request failed.');alert(x.responseText);}else if(e=='timeout'){alert('Request Time out.');}else {alert('Unknow Error.\n'+x.responseText);}
 			},
 			success: function(json){
 				$('#codJisa').children().remove();
@@ -57,56 +43,99 @@ $(document).ready(function(){
 		});
 	});
 	
-	//검진센터 선택시 선택검사 노출
+	//검진센터 선택시
 	$('#codJisa').change(function(){
+		//선택검사
 		$.ajax({
 			type: 'GET',
-			url: './jsonSelectionOption.web',
+			url: './jsonSelectionGmsa.web',
 			data: {numSeq:$('#numSeq').val(), codDc:$('#codDc').val(), codGmgn:$('#codGmgn').val()},
 			dataType: "json",
-			beforSend: function(){
-				//$('#wrap').block({message: '<img src="/contents/images/common/ajax-loader.gif"/>', css: {border: 'none'}, overlayCSS: {backgroundColor: '#FFFFFF'}});
-				$('#wrap').block({message: '<img src="/contents/images/common/ajax-loader.gif"/>', css: {border: 'none'}});
+			beforeSend: function(){
+				$('#wrap').block({message: '<img src="/contents/images/common/ajax-loader.gif"/>', css: {border: 'none', backgroundColor: '#666666'}});
 			},
 			complete: function(){
-				$('#warp').unblock();
+				$('#wrap').unblock();
 			},
 			error: function(x, e){
-	      if(x.status==0){
-	    	  alert('You are offline!!\n Please Check Your Network.');
-	      }else if(x.status==404){
-	        alert('Requested URL not found.');
-	      }else if(x.status==500){
-	        alert('Internel Server Error.');
-	      }else if(e=='parsererror'){
-	        alert('Error.\nParsing JSON Request failed.');
-	        alert(x.responseText);
-	      }else if(e=='timeout'){
-	        alert('Request Time out.');
-	      }else {
-	        alert('Unknow Error.\n'+x.responseText);
-	      }
+				if(x.status==0){alert('You are offline!!\n Please Check Your Network.');}else if(x.status==404){alert('Requested URL not found.');}else if(x.status==500){alert('Internel Server Error.');}else if(e=='parsererror'){alert('Error.\nParsing JSON Request failed.');alert(x.responseText);}else if(e=='timeout'){alert('Request Time out.');}else {alert('Unknow Error.\n'+x.responseText);}
 			},
 			success: function(json){
-				var optionIndex = 1;
-				$('#sel').children().remove();
-				$('#sel').append('<div>옵션' + optionIndex + ' : ');
-				/* 
-				console.log("============================>"+json.length);
+				var optionIndex = 0;
+				$('#selection').children().remove();
 				for ( var i = 0; i < json.length; i++ ){
 					if( json[i].optionIndex > optionIndex ){
-						$('#sel').append('</div><div>옵션' + (++optionIndex) + ' : ');
-						$('#sel').append('<input type="checkbox" name="codHm" value="'+json[i].hangmok.codHm+'"/>'+json[i].hangmok.descKor);
-					}else{
-						$('#sel').append('<input type="checkbox" name="codHm" value="'+json[i].hangmok.codHm+'"/>'+json[i].hangmok.descKor);
+						$('#selection').append('<div id="selection_' + (optionIndex + 1) + '">옵션' + (optionIndex + 1) + ' : </div>');
+						optionIndex++;
+						$('#selection_' + optionIndex ).append('<input type="checkbox" name="codHmSel" value="'+json[i].hangmok.codHm+'" title="'+json[i].hangmok.descKor+'" />'+json[i].hangmok.descKor);
+					}else if( json[i].optionIndex == optionIndex ){
+						$('#selection_' + optionIndex ).append('<input type="checkbox" name="codHmSel" value="'+json[i].hangmok.codHm+'" title="'+json[i].hangmok.descKor+'" />'+json[i].hangmok.descKor);
 					}
 				}
-				$('#sel').append('</div>');
-				 */
-					
+			}
+		});
+
+		//추가검사
+		$.ajax({
+			type: 'GET',
+			url: './jsonAdditionGmsa.web',
+			data: {numSeq:$('#numSeq').val(), codDc:$('#codDc').val()},
+			dataType: "json",
+			beforeSend: function(){
+				$('#wrap').block({message: '<img src="/contents/images/common/ajax-loader.gif"/>', css: {border: 'none', backgroundColor: '#666666'}});
+			},
+			complete: function(){
+				$('#wrap').unblock();
+			},
+			error: function(x, e){
+				if(x.status==0){alert('You are offline!!\n Please Check Your Network.');}else if(x.status==404){alert('Requested URL not found.');}else if(x.status==500){alert('Internel Server Error.');}else if(e=='parsererror'){alert('Error.\nParsing JSON Request failed.');alert(x.responseText);}else if(e=='timeout'){alert('Request Time out.');}else {alert('Unknow Error.\n'+x.responseText);}
+			},
+			success: function(json){
+				$('#addition').children().remove();
+				for ( var i = 0; i < json.length; i++ ){
+					$('#addition').append('<input type="checkbox" name="codHmAdd" value="'+json[i].codHm+'" id="'+json[i].cosSuga+'" title="'+json[i].descKor+'" />'+json[i].descKor);
+				}
 			}
 		});
 	});
+	
+
+	var strSelHangmok = "";		//선택검사항목
+	var allPrice = 0;				//총결제금액변수
+	var strAddHangmok = "";		//추가검사항목
+	var strAddPrice = "";		//추가검사비용
+	
+	$('input:checkbox[name="codHmSel"]').live('click', function(){
+		var selHangmok = $(this).attr('title');
+		
+		if(strSelHangmok == "") strSelHangmok = selHangmok;
+		else strSelHangmok += "H"+selHangmok;
+
+		$('#selHm').val(selHangmok);
+	});
+	
+	//추가검사항목 선택시 이벤트
+	//총 결제 금액 계산 및 표시
+	$('input:checkbox[name="codHmAdd"]').live('click', function(){
+		
+		var addHangmok = $(this).attr('title');
+		var addPrice = eval($(this).attr('id'));
+		
+		$('#suga').after('<p>' + addHangmok + ' '+ addPrice +'원</p>');
+		
+		if(strAddHangmok == "") strAddHangmok = addHangmok;
+		else strAddHangmok += "H"+addHangmok;
+		
+		if(strAddPrice == "") strAddPrice = addPrice;
+		else strAddPrice += "H"+addPrice;
+		
+		$('#addHm').val(strAddHangmok);
+		$('#addPr').val(strAddPrice);
+		
+		allPrice += addPrice;
+		$('#allPrice').html(allPrice);
+	});
+	
 });
 //-->
 </script>
@@ -116,7 +145,7 @@ $(document).ready(function(){
 <h1>개인고객 예약정보 입력화면</h1>
 <!-- <h4> - </h4> -->
 <br/>
-<form name="formSave" id="formSave" action="individualFormThree.web" method="post">
+<form name="formSave" id="formSave" action="personalForm3.web" method="post">
 	<!-- 검진프로그램 기본정보 -->
 	<input type="" id="numSeq"   name="numSeq"   value="${pumyigs.numSeq}"/>
 	<input type="" id="codDc"    name="codDc"    value="${pumyigs.codDc}"/>
@@ -129,7 +158,10 @@ $(document).ready(function(){
 	<input type="" id="numJumin"  name="numJumin"  value="${reser.numJumin}"/>
 	<input type="" id="numTel"    name="numTel"    value="${reser.numTel}"/>
 	<input type="" id="descEmail" name="descEmail" value="${reser.descEmail}" />
-	
+	<!-- 임시 항목 내용 -->
+	<input type="" id="selHm" name="selHm" value="" />
+	<input type="" id="addHm" name="addHm" value="" />
+	<input type="" id="addPr" name="addPr" value="" />
 	
 <div id="wrap">
 <p>* 검진프로그램 선택</p>
@@ -161,13 +193,30 @@ $(document).ready(function(){
 	</tr>
 	<tr>
 		<td>선택검사</td>
-		<td><div id="sel"></div></td>
+		<td><div id="selection"></div></td>
+	</tr>
+	<tr>
+		<td>추가검사</td>
+		<td><div id="addition"></div></td>
 	</tr>
 	<tr>
 		<td>메모</td>
 		<td>
-			<textarea id="custGita" name="custGita" rows="10" cols="36" placeholder="검사 받으시는분의 특이사항이나 주의사항이 있으면 꼭 알려주세요."></textarea>
+			<textarea id="custGita" name="custGita" rows="5" cols="36" placeholder="검사 받으시는분의 특이사항이나 주의사항이 있으면 꼭 알려주세요."></textarea>
 		</td>
+	</tr>
+</table>
+<table border="1" width="500">
+	<tr>
+		<td>검사비용 확인</td>
+	</tr>
+	<tr>
+		<td><div id="suga">추가검사</div></td>
+	</tr>
+</table>
+<table border="1" width="500">
+	<tr>
+ 		<td>총 결제 예상 금액 : <span id="allPrice"></span></td>
 	</tr>
 </table>
 <div style="margin: 20 0 0 0; text-align: center;"><input type="submit" name="btnSubmit" id="btnSubmit" value="다음"/></div>

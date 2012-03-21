@@ -11,6 +11,7 @@
 		<mapper resource="kr/or/kmimvc/dao/impl/reserve/sqlmap/hangmok.xml"/>
 		<mapper resource="kr/or/kmimvc/dao/impl/reserve/sqlmap/reser_capa.xml"/>
 		<mapper resource="kr/or/kmimvc/dao/impl/reserve/sqlmap/reser.xml"/>
+		<mapper resource="kr/or/kmimvc/dao/impl/reserve/sqlmap/pumyi_suga.xml"/>
 	</mappers>
 
 </configuration>

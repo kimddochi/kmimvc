@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd"> 
+
+<mapper namespace="pumyi_suga">
+
+	<resultMap id="pumyiSugaMap" type="kr.or.kmimvc.dto.PumyiSuga">
+		<result property="numSeq"		column="NUM_SEQ"/>
+		<result property="codDc"		column="COD_DC"/>
+		<result property="codHm"		column="COD_HM"/>
+		<result property="cosSuga"	column="COS_SUGA"/>
+		<result property="descKor"	column="DESC_KOR"/>
+		<result property="descEng"	column="DESC_ENG"/>
+	</resultMap>
+	
+	<resultMap id="hangmokMap" type="kr.or.kmimvc.dto.Hangmok">
+		<id property="codHm"		column="COD_HM"/>
+		<result property="descKor"	column="DESC_KOR"/>
+		<result property="descEng"	column="DESC_ENG"/>
+	</resultMap>
+
+	<select id="getAdditionGmsa" parameterType="kr.or.kmimvc.dto.Pumyigs" resultMap="pumyiSugaMap">
+		SELECT NUM_SEQ
+		      ,COD_DC
+		      ,COD_HM
+		      ,COS_SUGA
+		      ,(SELECT DESC_KOR FROM HANGMOK WHERE SUGA.COD_HM = COD_HM) AS DESC_KOR
+		      ,(SELECT DESC_ENG FROM HANGMOK WHERE SUGA.COD_HM = COD_HM) AS DESC_ENG
+		  FROM PUMYI_SUGA SUGA
+		 WHERE 1=1
+			 <if test="numSeq!=null and codDc!=null">
+		   AND NUM_SEQ = #{numSeq}
+		   AND COD_DC = #{codDc}
+		   </if>
+	</select>
+	
+</mapper>
+	

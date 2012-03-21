@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Vector;
 
 import kr.or.kmimvc.dao.face.reserve.ReserveDao;
 import kr.or.kmimvc.dto.Hangmok;
 import kr.or.kmimvc.dto.Pumyi;
 import kr.or.kmimvc.dto.Pumyigs;
 import kr.or.kmimvc.dto.PumyigsSel;
+import kr.or.kmimvc.dto.ReserCapa;
 import kr.or.kmimvc.dto.SelectionGmsa;
 import kr.or.kmimvc.service.face.reserve.ReserveService;
 
@@ -18,7 +18,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import utils.DateTime;
-import utils.JsonUtil;
 
 /**
  * @author kimddochi
@@ -71,14 +70,14 @@ public class ReserveServiceImpl implements ReserveService{
 	}
 
 
-	public List<?> findSelectionOption(Pumyigs pumyigs) {
+	public List<?> findSelectionGmsa(Pumyigs pumyigs) {
 		
 		List<SelectionGmsa> result = new ArrayList<SelectionGmsa>();
 		
 		PumyigsSel pmys = new PumyigsSel();
 		
 		//PUMYIGS_SEL Table에서 NUM_SEQ, COD_DC, COD_GMGN을 가지고 선택항목을 가지고 온다.
-		List<?> list =  this.reserveDao.findSelectionOption(pumyigs);
+		List<?> list =  this.reserveDao.findSelectionGmsa(pumyigs);
 		
 		//선택검사 코드값에 추가옵션 여부 : 1 = 없다, 2이상 = 추가선택검사가 있고 2이상의 값이 추가선택검사에서 선택할 수 있는 갯수을 의미함.
 		String optCnt = "";
@@ -130,6 +129,18 @@ public class ReserveServiceImpl implements ReserveService{
 		}
 
 		return result;
+	}
+	
+	
+	public List<?> findAdditionGmsa(Pumyigs pumyigs) {
+		
+		List<?> result = this.reserveDao.findAdditionGmsa(pumyigs);
+		
+		return result;
+	}
+	
+	public List<?> findReserveDate(ReserCapa reserCapa) {
+		return this.reserveDao.findReserveDate(reserCapa);
 	}
 	
 //	public List<?> findSelectionOption(Pumyigs pumyigs) {
@@ -197,10 +208,6 @@ public class ReserveServiceImpl implements ReserveService{
 //		List<?> list = this.reserveDao.findHangmokByCodDc(codHm);
 //		
 //		return list;
-//	}
-//
-//	public List<?> findReserveDate(ReserCapa reserCapa) {
-//		return this.reserveDao.findReserveDate(reserCapa);
 //	}
 //
 //	public void save(Reser reser) {

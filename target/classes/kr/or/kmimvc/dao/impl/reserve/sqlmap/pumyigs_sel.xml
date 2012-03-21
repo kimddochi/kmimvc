@@ -11,7 +11,7 @@
 		<result property="codHm"		column="COD_HM"/>
 	</resultMap>
 
-	<select id="getSelectionOption" parameterType="kr.or.kmimvc.dto.PumyigsSel" resultMap="pumyigsSelMap">
+	<select id="getSelectionGmsa" parameterType="kr.or.kmimvc.dto.PumyigsSel" resultMap="pumyigsSelMap">
 		SELECT NUM_SEQ,
 		       COD_DC,
 		       COD_GMGN,

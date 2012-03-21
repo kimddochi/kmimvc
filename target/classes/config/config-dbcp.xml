@@ -10,20 +10,20 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
 
 	<!-- ####### dataSource For Oracle Start #######	-->
-<!-- 
 	<bean id="dataSourceForOracle" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
 		<property name="driverClass" 	value="oracle.jdbc.OracleDriver"/>
 		<property name="url" 				  value="jdbc:oracle:thin:@210.16.195.112:1521:GLOBAL"/>
 		<property name="username" 		value="KMI"/>
 		<property name="password" 		value="VKZMELWKDLS"/>
 	</bean>
--->
 
+<!-- 
 	<bean id="dataSourceForOracle" class="org.springframework.jndi.JndiObjectFactoryBean">
 		<property name="jndiName">
 			<value>java:comp/env/jdbc/ubDS</value>
 		</property>
 	</bean>
+-->
 	
 	<bean id="dataSource" class="net.sf.log4jdbc.Log4jdbcProxyDataSource">
 		<constructor-arg ref="dataSourceForOracle" />
